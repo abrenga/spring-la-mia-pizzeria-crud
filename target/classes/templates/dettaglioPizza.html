@@ -12,17 +12,17 @@
 <body>
 	<div th:replace="~{fragment.html::header-block}"></div>
 	<div  class="container text-center">
-		<h1>Menu</h1>
+		
 		<div class="row">
-			<div th:each="pizza:${pizze}" class="col-lg-4">
-				<div class="card" style="width: 18rem;">
-					<img th:src="@{${pizza.urlPhoto}}" class="card-img-top" alt="...">
+			<h1>In dettaglio:</h1>
+			<div class="col-lg">
+				<div class="card" style="width: 50rem;">
+					<img th:src="${dettaglioPizza.urlPhoto}"  class="card-img-top" alt="...">
 					<div class="card-body">
-						<h5 th:text="${pizza.name}" class="card-title"></h5>
-						<p th:text="${pizza.descrizione}" class="card-text"></p>
-						<p th:text="${pizza.prezzo}" class="card-text"><span>$</span></p>
+						<h5 th:text="${dettaglioPizza.name}" class="card-title"></h5>
+						<p th:text="${dettaglioPizza.descrizione}" class="card-text"></p>
+						<p th:text="${dettaglioPizza.prezzo}" class="card-text"><span>$</span></p>
 						
-						<a th:href="@{/index/{id}(id=${pizza.getId()})}" class="btn btn-primary">Ordina</a>
 					</div>
 				</div>
 			</div>

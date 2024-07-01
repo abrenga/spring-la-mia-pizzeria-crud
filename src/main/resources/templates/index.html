@@ -22,7 +22,7 @@
 						<p th:text="${pizza.descrizione}" class="card-text"></p>
 						<p th:text="${pizza.prezzo}" class="card-text"><span>$</span></p>
 						
-						<a th:href="@{/}" class="btn btn-primary">Ordina</a>
+						<a th:href="@{/index/{id}(id=${pizza.getId()})}" class="btn btn-primary">Ordina</a>
 					</div>
 				</div>
 			</div>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import it.lamiapizzeria.model.ModelofmenuDB;
 import it.lamiapizzeria.repository.MyRepository;
@@ -24,11 +25,25 @@ public class MyControllerPizzeria {
 		
 		List<ModelofmenuDB> menu = repository.findAll();
 		model.addAttribute("pizze", menu);
-		System.out.println("lepizzeso");
-		for(ModelofmenuDB m : menu) {
-			System.out.println(m.getDescrizione());
-		}
 		return "index";
 	}
+	
+	
+	@GetMapping("/index/{id}")
+	public String paginaSingola(@PathVariable(name="id") Integer id, Model model) {
+		List<ModelofmenuDB> menu = repository.findAll();
+		for(int i =0; i<menu.size(); i++) {
+			if(menu.get(i).getId() == id){
+				model.addAttribute("dettaglioPizza", menu.get(i));
+			}
+		}
+		
+		
+		return "dettaglioPizza";
+		
+	}
+	
+	
+	
 
 }
