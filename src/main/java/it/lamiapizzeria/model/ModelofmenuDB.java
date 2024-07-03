@@ -11,21 +11,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="Menu")
 public class ModelofmenuDB{
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
-	
+
+
 	@Column(name="type_of_pizza", nullable=false)
 	private String name;
-	
+
 	@Column(name="descrizione", nullable=false)
 	private String descrizione;
-	
+
 	@Column(name="url", nullable=false)
 	private String urlPhoto;
-	
+
 	@Column(name="prezzo", nullable=false)
 	private float prezzo;
 
@@ -68,9 +68,9 @@ public class ModelofmenuDB{
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
