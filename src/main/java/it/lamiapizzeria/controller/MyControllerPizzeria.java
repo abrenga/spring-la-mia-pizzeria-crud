@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.lamiapizzeria.model.ModelofmenuDB;
 import it.lamiapizzeria.repository.MyRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class MyControllerPizzeria {
@@ -52,14 +53,27 @@ public class MyControllerPizzeria {
 	}
 	
 	
+
+	
 	@GetMapping("/form")
-	public String formPage() {
-		return "form";
+	public String create(Model model) {
+	 model.addAttribute("menu", new ModelofmenuDB());
+
+	 return "/form";
 	}
 
+	
+	
 	@PostMapping("/form")
-	public String formtoDB(@ModelAttribute("menu") ModelofmenuDB menu,BindingResult bindingResult, Model model) {
-		return "redirect:/index";
+	public String FormDb(@Valid @ModelAttribute("menu") ModelofmenuDB menu,BindingResult bindingResult,
+	Model model){
+		
+		
+		 if(bindingResult.hasErrors()){
+			 return "/index/form";
+			 }
 
+			 repository.save(menu);
+		return "/form";
 	}
 }
