@@ -15,19 +15,39 @@
 		<h1 class="mt-5 fs-2 text-center">Inserisci una nuova pizza:</h1>
 		<div class=" d-flex align-items-center position-absolute top-50 start-50 translate-middle">
 
-			<form class="mx-auto p-2" style="width: 200px;" id="form-insert" th:object="${menu}" th:action="@{/form}" method="post">
+			<form class="mx-auto p-2" style="width: 200px;" id="form-insert" th:object="${menu}" th:action="@{/form}"
+				method="post">
 
 				<label for="name">nome:</label>
-				<input type="text" id="name" th:field="*{name}">
+				<input type="text" id="name" th:field="*{name}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+
+					<ul>
+						<li th:each="${err:#fields.errors(`name`)}" th:text="${err}"></li>
+					</ul>
+				</div>
 
 
 				<label for="description">descrizione:</label>
-				<input type="text" id="description" name="description" th:field="*{descrizione}">
+				<input type="text" id="description" name="description" th:field="*{descrizione}"
+					th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+
+					<ul>
+						<li th:each="${err:#fields.errors(`description`)}" th:text="${err}"></li>
+					</ul>
+				</div>
 
 				<label for="prezzo">Prezzo:</label>
-				<input type="text" id="prezzo" th:field="*{prezzo}">
+				<input type="text" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
 
-				<button  type="submit" class="mt-1 btn btn-primary">Inserisci</button>
+					<ul>
+						<li th:each="${err:#fields.errors(`prezzo`)}" th:text="${err}"></li>
+					</ul>
+				</div>
+
+				<button type="submit" class="mt-1 btn btn-primary">Inserisci</button>
 			</form>
 		</div>
 	</div>
