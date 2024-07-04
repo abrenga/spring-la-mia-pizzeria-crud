@@ -24,7 +24,7 @@ public class MyControllerPizzeria {
 	@Autowired
 	private MyRepository repository;
 
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String popuateMenu(@RequestParam(name = "name", required = false) String name, Model model) {
 
 		List<ModelofmenuDB> menu = new ArrayList<>();
@@ -55,22 +55,22 @@ public class MyControllerPizzeria {
 	
 
 	
-	@GetMapping("/form")
+	@GetMapping("index/form")
 	public String create(Model model) {
 	 model.addAttribute("menu", new ModelofmenuDB());
 
-	 return "/form";
+	 return "form";
 	}
 
 	
 	
-	@PostMapping("/form")
+	@PostMapping("index/form")
 	public String FormDb(@Valid @ModelAttribute("menu") ModelofmenuDB menu,BindingResult bindingResult,
 	Model model){
 		
 		
 		 if(bindingResult.hasErrors()){
-			 return "/index/form";
+			 return "/form";
 			 }
 
 			 repository.save(menu);
