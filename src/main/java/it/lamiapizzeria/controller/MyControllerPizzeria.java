@@ -56,7 +56,7 @@ public class MyControllerPizzeria {
 	
 
 	
-	@GetMapping("index/form")
+	@GetMapping("/index/form")
 	public String create(Model model) {
 	 model.addAttribute("menu", new ModelofmenuDB());
 
@@ -65,14 +65,11 @@ public class MyControllerPizzeria {
 
 	
 	
-	@PostMapping("index/form")
+	@PostMapping("/index/form")
 	public String FormDb(@Valid @ModelAttribute("menu") ModelofmenuDB menu,BindingResult bindingResult,
 	Model model){
-		if(menu.getPrezzo()<=0) {
-			bindingResult.addError(new ObjectError("Errore", "il prezzo è obbligatorio"));
-		}
-		
-		 if(bindingResult.hasErrors()){
+
+		if(bindingResult.hasErrors()){
 			 return "/form";
 			 }
 

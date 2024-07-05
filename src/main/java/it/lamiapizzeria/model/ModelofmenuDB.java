@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -27,7 +28,6 @@ public class ModelofmenuDB{
 	private String name;
 
 	@Column(name="descrizione", nullable=false)
-	@NotNull(message="please enter a value")
 	@NotBlank(message="please enter a value")
 	private String descrizione;
 
@@ -35,8 +35,8 @@ public class ModelofmenuDB{
 	private String urlPhoto;
 
 	@Column(name="prezzo", nullable=false)
-	@NotNull(message="please enter a value")
-	private double prezzo;
+	@DecimalMin(value = "0", inclusive = false, message="please enter a value")
+	private float prezzo;
 
 	public Integer getId() {
 		return id;
@@ -70,7 +70,7 @@ public class ModelofmenuDB{
 		this.urlPhoto = urlPhoto;
 	}
 
-	public double getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
 

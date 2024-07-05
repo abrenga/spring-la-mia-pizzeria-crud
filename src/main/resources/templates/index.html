@@ -14,7 +14,7 @@
 	<div  class="container text-center">
 		<h1>Menu</h1>
 		<div class="row">
-			<div th:if="${pizze.isEmpty()}" th:each="pizza:${pizze}" class="col-lg-4">
+			<div th:unless="${pizze.isEmpty()}" th:each="pizza:${pizze}" class="col-lg-4">
 				<div class="card" style="width: 18rem;">
 					<img th:src="@{${pizza.urlPhoto}}" class="card-img-top" alt="...">
 					<div class="card-body">
