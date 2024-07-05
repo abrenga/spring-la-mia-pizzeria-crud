@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 
 
 @Entity
@@ -34,7 +36,7 @@ public class ModelofmenuDB{
 
 	@Column(name="prezzo", nullable=false)
 	@NotNull(message="please enter a value")
-	private float prezzo;
+	private double prezzo;
 
 	public Integer getId() {
 		return id;
@@ -68,7 +70,7 @@ public class ModelofmenuDB{
 		this.urlPhoto = urlPhoto;
 	}
 
-	public float getPrezzo() {
+	public double getPrezzo() {
 		return prezzo;
 	}
 

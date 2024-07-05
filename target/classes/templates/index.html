@@ -14,17 +14,20 @@
 	<div  class="container text-center">
 		<h1>Menu</h1>
 		<div class="row">
-			<div th:each="pizza:${pizze}" class="col-lg-4">
+			<div th:if="${pizze.isEmpty()}" th:each="pizza:${pizze}" class="col-lg-4">
 				<div class="card" style="width: 18rem;">
 					<img th:src="@{${pizza.urlPhoto}}" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 th:text="${pizza.name}" class="card-title"></h5>
 						<p th:text="${pizza.descrizione}" class="card-text"></p>
-						<p th:text="${pizza.prezzo}" class="card-text"><span>$</span></p>
+						<p th:text="|${#numbers.formatDecimal(pizza.prezzo, 1,2,'COMMA')}|" class="card-text"><span>$</span></p>
 						
 						<a th:href="@{/index/{id}(id=${pizza.getId()})}" class="btn btn-primary">Ordina</a>
 					</div>
 				</div>
+			</div>
+			<div th:if="${pizze.isEmpty()}">
+				<p>Non ci sono pizze</p>
 			</div>
 		</div>
 	</div>
