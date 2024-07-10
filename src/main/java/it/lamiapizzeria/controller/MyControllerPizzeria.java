@@ -78,4 +78,11 @@ public class MyControllerPizzeria {
 	}
 	
 	
+	@GetMapping("/index/administration/{id}")
+	public String administration(@Valid @PathVariable("id") Integer id, Model model) {
+		model.addAttribute("updated",repository.getReferenceById(id));
+		return ("form");
+	}
+	
+	
 }

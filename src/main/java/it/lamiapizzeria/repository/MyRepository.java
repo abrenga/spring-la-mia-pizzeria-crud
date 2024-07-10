@@ -12,6 +12,8 @@ import it.lamiapizzeria.model.ModelofmenuDB;
 
 public interface MyRepository extends JpaRepository<ModelofmenuDB, Integer>{
 
-	public List<ModelofmenuDB> findByName(String Name);
+	List<ModelofmenuDB> findByName(String name);
+
+	
 
 }
