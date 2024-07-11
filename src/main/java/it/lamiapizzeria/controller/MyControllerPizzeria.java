@@ -52,8 +52,6 @@ public class MyControllerPizzeria {
 		return "dettaglioPizza";
 
 	}
-	
-	
 
 	
 	@GetMapping("/index/form")
@@ -70,18 +68,40 @@ public class MyControllerPizzeria {
 	Model model){
 
 		if(bindingResult.hasErrors()){
-			 return "/form";
+			 return "redirect:/index/form";
 			 }
 
 			 repository.save(menu);
-		return "/form";
+		return "redirect:/index/administration";
+	}
+
+	@GetMapping("/index/administration")
+	public String administrationEP(Model model) {
+		List <ModelofmenuDB> pizze= repository.findAll();
+		model.addAttribute("pizze", pizze );
+		return "administration";
 	}
 	
 	
-	@GetMapping("/index/administration/{id}")
-	public String administration(@Valid @PathVariable("id") Integer id, Model model) {
+	@GetMapping("/index/formUpdate/{id}")
+	public String administration(@PathVariable(name="id") Integer id, Model model) {
 		model.addAttribute("updated",repository.getReferenceById(id));
-		return ("form");
+		return "formUpdate";
+	}
+
+	@PostMapping("/formUpdate/{id}")
+	public String update(@Valid @ModelAttribute("updated") ModelofmenuDB updated, BindingResult bindingResult,Model model ){
+		if(bindingResult.hasErrors()){
+			return "redirect:/index/formUpdate/{updated.id}";
+		}
+		repository.save(updated);
+		return "redirect:/index/administration";
+	}
+
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id")Integer id){
+		repository.deleteById(id);
+		return"redirect:/index/administration";
 	}
 	
 	

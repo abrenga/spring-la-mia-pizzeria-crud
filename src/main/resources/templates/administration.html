@@ -23,20 +23,18 @@
 					<th scope="col">Handle</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:each="pizza : ${pizze}">
 				<tr>
 					<th scope="row"></th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<td th:text="${pizza.name}"></td>
+					<td th:text="${pizza.descrizione}"></td>
+					<td th:text="${pizza.prezzo}"></td>
 					<td>
-						<form>
-							<button type="submit" class=" btn btn-secondary btn-sm">modifica</button>
-						</form>
+							<a class=" btn btn-secondary btn-sm" th:href="@{/index/formUpdate/{id}(id=${pizza.getId()})}">modifica</a>
 
 					</td>
 					<td>
-						<form>
+						<form th:action="@{'/index/administration/delete/{id}'(id=${pizza.id})}" method="post" >
 							<button type="submit" class=" btn btn-danger btn-sm">cancella</button>
 						</form>
 
@@ -44,9 +42,11 @@
 					</td>
 				</tr>
 
+
 			</tbody>
 
 		</table>
+		<div><a class=" btn btn-secondary btn-sm" th:href="@{/index/form}">Aggiungi nuovo</a></div>
 	</div>
 	</main>
 	</div>

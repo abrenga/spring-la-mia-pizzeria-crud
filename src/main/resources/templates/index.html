@@ -22,7 +22,7 @@
 						<p th:text="${pizza.descrizione}" class="card-text"></p>
 						<p th:text="|${#numbers.formatDecimal(pizza.prezzo, 1,2,'COMMA')}|" class="card-text"><span>$</span></p>
 						
-						<a th:href="@{/index/{id}(id=${pizza.getId()})}" class="btn btn-primary">Ordina</a>
+						<a th:href="@{/index/{id}(id=${pizza.getId()})}" class="btn btn-primary">Dettaglio</a>
 					</div>
 				</div>
 			</div>
